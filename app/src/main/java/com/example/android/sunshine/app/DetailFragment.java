@@ -92,9 +92,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         if (intent == null) {
             return null;
         }
-
-        // Now create and return a CursorLoader that will take care of
-        // creating a Cursor for the data being displayed.
+        
         return new CursorLoader(
                 getActivity(),
                 intent.getData(),
@@ -118,10 +116,10 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
         boolean isMetric = Utility.isMetric(getActivity());
 
-        String high = Utility.formatTemperature(
+        String high = Utility.formatTemperature(getActivity(),
                 data.getDouble(COL_WEATHER_MAX_TEMP), isMetric);
 
-        String low = Utility.formatTemperature(
+        String low = Utility.formatTemperature(getActivity(),
                 data.getDouble(COL_WEATHER_MIN_TEMP), isMetric);
 
         mForecast = String.format("%s - %s - %s/%s", dateString, weatherDescription, high, low);
@@ -129,7 +127,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         TextView detailTextView = (TextView)getView().findViewById(R.id.detail_text);
         detailTextView.setText(mForecast);
 
-        // If onCreateOptionsMenu has already happened, we need to update the share intent now.
         if (mShareActionProvider != null) {
             mShareActionProvider.setShareIntent(createShareForecastIntent());
         }
