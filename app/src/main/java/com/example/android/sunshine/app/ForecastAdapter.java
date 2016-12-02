@@ -38,7 +38,7 @@ public class ForecastAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView tv = (TextView)view;
-        tv.setText(convertCursorRowToUXFormat(cursor));
+//        TextView tv = (TextView)view;
+//        tv.setText(convertCursorRowToUXFormat(cursor));
     }
 }
